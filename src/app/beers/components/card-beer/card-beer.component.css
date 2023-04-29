@@ -1,0 +1,36 @@
+img {
+  max-height: auto;
+  width: 35%;
+  object-fit: cover;
+}
+mat-card {
+  height: 400px;
+  align-items: center;
+  border-radius: 20px;
+  width: 200px;
+}
+.beer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+mat-icon {
+  font-size: 50px;
+}
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  margin-inline: auto;
+  max-width: 150px;
+}
+mat-card-title {
+  color: #000b4f;
+}

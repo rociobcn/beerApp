@@ -1,0 +1,28 @@
+img{
+  width: 10%;
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 300px;
+}
+.background {
+  height: 100vh;
+  background-image: url("/assets/barley-field-photo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
