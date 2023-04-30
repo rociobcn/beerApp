@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Beer } from '../../interfaces/beer.interface';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-card-beer',
@@ -13,6 +14,13 @@ export class CardBeerComponent {
   isAnimated = false;
 
   ngOnInit(): void {
-    if (!this.beer) throw Error('Beer property is required');
+    if (!this.beer) {
+      throwError(() => new Error('Beer property is required')).subscribe({
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    }
+
   }
 }

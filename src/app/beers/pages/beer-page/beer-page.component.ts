@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, switchMap } from 'rxjs';
-import { Beer } from '../../interfaces/beer.interface';
 import { BeerService } from '../../services/beer.service';
 
 @Component({
@@ -11,6 +10,8 @@ import { BeerService } from '../../services/beer.service';
 })
 export class BeerPageComponent {
   public beer?: any;
+  activeTab: string = 'description';
+
 
   constructor(
     private beerService: BeerService,
@@ -33,5 +34,9 @@ export class BeerPageComponent {
 
   goBack(): void {
     this.router.navigateByUrl('beers/list');
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 }

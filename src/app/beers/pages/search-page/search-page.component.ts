@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { BeerService } from '../../services/beer.service';
 import { Beer } from '../../interfaces/beer.interface';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { catchError, distinctUntilChanged, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-search-page',
@@ -12,19 +11,37 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class SearchPageComponent {
   beers: Beer[] = [];
+  isLoading = false;
 
   constructor(private beerService: BeerService, private router: Router) {}
 
   searchByName(term: string): void {
-    if (term === '') {
+    if (!term.trim()) {
       this.beers = [];
       return;
     }
 
-    this.beerService.getSuggestions(term).subscribe((beers) => {
-      this.beers = beers;
-    });
+    this.isLoading = true;
+
+    this.beerService
+      .getSuggestions(term)
+      .pipe(
+        distinctUntilChanged(),
+        switchMap((beers: Beer[]) => {
+          this.isLoading = false;
+          return of(beers);
+        }),
+        catchError((error) => {
+          console.error(error);
+          this.isLoading = false;
+          return of([]);
+        })
+      )
+      .subscribe((beers) => {
+        this.beers = beers;
+      });
   }
+
   searchRoute(id: number) {
     this.router.navigateByUrl('beers/' + id);
   }

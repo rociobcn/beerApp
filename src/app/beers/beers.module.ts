@@ -9,7 +9,6 @@ import { CardBeerComponent } from './components/card-beer/card-beer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 
 
@@ -22,7 +21,6 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
     CardBeerComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent,
     SearchPageComponent
   ],
   imports: [
