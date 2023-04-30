@@ -16,4 +16,5 @@ export class ListPageComponent implements OnInit {
   ngOnInit(): void {
     this.beerService.getBeers().subscribe((beers) => (this.beers = beers));
   }
+
 }

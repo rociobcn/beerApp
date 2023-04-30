@@ -1,4 +1,9 @@
-<mat-card class="mr-2">
+<mat-card
+  class="mr-2"
+  (mouseenter)="isAnimated = true"
+  (mouseleave)="isAnimated = false"
+  [class.animated]="isAnimated"
+>
   <mat-card-header class="mb-4">
     <mat-card-title class="text">{{ beer.name }}</mat-card-title>
     <mat-card-subtitle class="text">{{ beer.tagline }}</mat-card-subtitle>

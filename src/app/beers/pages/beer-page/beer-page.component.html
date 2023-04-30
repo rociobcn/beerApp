@@ -1,50 +1,86 @@
-
 <ng-template #divLoading>
   <div class="center">
-         <mat-spinner color="accent"></mat-spinner>
+    <mat-spinner color="accent"></mat-spinner>
   </div>
 </ng-template>
 
+<div *ngIf="beer; else divLoading" class="background grid">
+  <div class="col-9 mb-6">
+    <mat-card class="beer-details p-7 card mt-8">
+      <div class="flex justify-content-between">
+        <div>
+          <h1>
+            <strong>{{ beer.name }}</strong>
+          </h1>
+          <h4>{{ beer.tagline }}</h4>
+        </div>
+        <div>
+          <button class="btn" (click)="goBack()">Go back</button>
+        </div>
+      </div>
 
-<div *ngIf="beer; else divLoading" class="background">
+      <mat-tab-group color="accent">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Description</strong>
+          </ng-template>
+          <p class="mt-4">{{ beer.description }}</p>
+        </mat-tab>
 
-  <mat-card class="">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Ingredients</strong>
+          </ng-template>
+          <ul class="mt-4">
+            <li *ngFor="let malt of beer.ingredients.malt">
+              {{ malt.name }} ({{ malt.amount.value }} {{ malt.amount.unit }})
+            </li>
+            <li *ngFor="let hop of beer.ingredients.hops">
+              {{ hop.name }} ({{ hop.amount.value }} {{ hop.amount.unit }}) -
+              {{ hop.add }} - {{ hop.attribute }}
+            </li>
+            <li>Yeast: {{ beer.ingredients.yeast }}</li>
+          </ul>
+        </mat-tab>
 
-    <mat-card-header>
-      <mat-card-title>{{ beer.name }}</mat-card-title>
-      <mat-card-subtitle>{{ beer.abv }}</mat-card-subtitle>
-    </mat-card-header>
-
-
-    <img [src]="beer.image_url" [alt]="beer.name" mat-card-image  />
-
-  </mat-card>
-
-  <mat-card class="col-12 sm:col-6 mt-8">
-
-    <mat-card-header>
-      <mat-card-title>Información</mat-card-title>
-      <mat-card-subtitle>{{ beer.superhero }}</mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>{{ beer.first_appearance }}</mat-list-item>
-        <mat-list-item>{{ beer.characters }}</mat-list-item>
-        <mat-list-item>{{ beer.first_brewed }}</mat-list-item>
-        <mat-list-item>{{ beer.brewers_tips }}</mat-list-item>
-      </mat-list>
-
-      <button
-        mat-button
-        color="warn"
-        (click)="goBack()"
-      >
-        Regresar
-      </button>
-
-    </mat-card-content>
-
-
-  </mat-card>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Method</strong>
+          </ng-template>
+          <ul class="mt-4">
+            <li *ngFor="let mash of beer.method.mash_temp">
+              Mash at {{ mash.temp.value }} {{ mash.temp.unit }} for
+              {{ mash.duration }} minutes
+            </li>
+            <li>
+              Fermentation at {{ beer.method.fermentation.temp.value }}
+              {{ beer.method.fermentation.temp.unit }}
+            </li>
+            <li *ngIf="beer.method.twist">Twist: {{ beer.method.twist }}</li>
+          </ul>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Details</strong>
+          </ng-template>
+          <ul class="mt-4">
+            <li><strong>ABV:</strong> {{ beer.abv }}</li>
+            <li><strong>IBU:</strong> {{ beer.ibu }}</li>
+            <li><strong>Target FG:</strong> {{ beer.target_fg }}</li>
+            <li><strong>Target OG:</strong> {{ beer.target_og }}</li>
+            <li><strong>EBC:</strong> {{ beer.ebc }}</li>
+            <li><strong>SRM:</strong> {{ beer.srm }}</li>
+            <li><strong>pH:</strong> {{ beer.ph }}</li>
+            <li>
+              <strong>Attenuation Level:</strong> {{ beer.attenuation_level }}
+            </li>
+          </ul>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
 </div>

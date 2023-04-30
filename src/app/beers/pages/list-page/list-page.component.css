@@ -20,36 +20,14 @@
 .list-container {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch; /* para mejor performance en dispositivos móviles */
-  scroll-behavior: smooth; /* para un scroll suave */
-}
-
-.list-container::before,
-.list-container::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.list-container::before {
-  left: 0;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-
-.list-container::after {
-  right: 0;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  width: 100%;
 }
 
 .card-container {
   flex: 0 0 auto;
   width: 200px;
   margin-right: 10px;
+  scroll-snap-align: start;
 }

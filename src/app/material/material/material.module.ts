@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -30,7 +31,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
 
   ]
 })

@@ -1,1 +1,19 @@
-<p>search-page works!</p>
+<div class="flex flex-column justify-content-center align-items-center  background">
+  <div class="w-full center">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Do you have a beer in mind? Search here"
+      (keyup)="searchByName(txtInput.value)"
+      #txtInput
+      class="mt-8 w-9"
+    />
+  </div>
+  <div class="result-beer flex flex-column align-items-center text-center">
+      <a *ngFor="let result of beers; let i = index" (click)="searchRoute(result.id)" class="white">
+      {{ result.name }}
+      </a>
+  </div>
+</div>
+
+

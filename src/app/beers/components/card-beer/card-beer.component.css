@@ -8,7 +8,24 @@ mat-card {
   align-items: center;
   border-radius: 20px;
   width: 200px;
+  border: 5px solid white;
 }
+
+mat-card.animated {
+  animation: border-animation 2s ease infinite;
+}
+@keyframes border-animation {
+  0% {
+    border-color: #bc9c1a;
+  }
+  50% {
+    border-color: #f1c40f;
+  }
+  100% {
+    border-color: #826f25;
+  }
+}
+
 .beer-content {
   display: flex;
   flex-direction: column;

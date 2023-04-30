@@ -22,4 +22,8 @@ export class BeerService {
     );
   }
 
+  getSuggestions( query: string ): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`${ this.baseUrl }/beers?beer_name=${ query }&per_page=7`);
+  }
+
 }
