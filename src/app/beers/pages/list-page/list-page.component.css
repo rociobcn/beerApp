@@ -19,4 +19,8 @@
 .center{
   place-content: center;
 }
-
+.scroll{
+  max-height: 50vh; /* Establece una altura máxima del 80% del alto de la ventana */
+  overflow-y: auto;
+  height: 40vh;
+}
