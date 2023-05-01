@@ -51,7 +51,7 @@ export class BeerPageComponent {
     this.router.navigateByUrl('beers/list');
   }
 
-  setActiveTab(tab: string) {
+  setActiveTab(tab: string): void {
     this.activeTab = tab;
   }
 }

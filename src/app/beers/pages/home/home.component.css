@@ -30,7 +30,7 @@ h4 {
   text-align: center;
 }
 main h1,
-main h4 {
+main h4, button {
   z-index: 1; /* Aseguramos que el texto esté por encima del pseudo-elemento */
   color: white; /* Cambiamos el color del texto a blanco para que resalte más */
 }
