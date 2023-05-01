@@ -32,3 +32,19 @@ header {
 .mat-icon:hover {
   color: #eda82a;
 }
+
+.btn2 {
+  display: inline-block;
+  background-color: white !important;
+  color: white !important;
+  padding: 12px 24px;
+  font-size: 0.8em !important;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-family: unset;
+}

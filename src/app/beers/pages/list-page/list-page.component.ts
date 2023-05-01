@@ -10,11 +10,28 @@ import { BeerService } from '../../services/beer.service';
 })
 export class ListPageComponent implements OnInit {
   public beers: Beer[] = [];
+  page = 1;
+  perPage = 12;
 
   constructor(private beerService: BeerService) {}
 
   ngOnInit(): void {
-    this.beerService.getBeers().subscribe((beers) => (this.beers = beers));
+   this.loadMoreBeers();
   }
+
+  loadMoreBeers() {
+    console.log(this.page)
+    this.beerService.getBeers(this.page, this.perPage).subscribe(
+      (newBeers) => {
+        this.beers = [...this.beers, ...newBeers];
+        this.page++;
+      },
+      (error) => {
+        console.log('Error al cargar las cervezas: ', error);
+      }
+    );
+  }
+
+
 
 }

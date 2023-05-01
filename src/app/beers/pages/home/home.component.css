@@ -9,7 +9,8 @@ main {
   background-size: cover;
 }
 
-main::before {/* superpone en la parte superior del elemento main para crear una capa transparente sobre la imagen de fondo. */
+main::before {
+  /* superpone en la parte superior del elemento main para crear una capa transparente sobre la imagen de fondo. */
   content: "";
   position: absolute;
   top: 0;
@@ -27,24 +28,13 @@ h1 {
 h4 {
   font-size: 2rem;
   text-align: center;
-  animation: pulse 2s ease-in-out infinite;
 }
 main h1,
 main h4 {
   z-index: 1; /* Aseguramos que el texto esté por encima del pseudo-elemento */
   color: white; /* Cambiamos el color del texto a blanco para que resalte más */
 }
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5rem;

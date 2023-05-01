@@ -5,13 +5,90 @@
 </ng-template>
 
 <div *ngIf="beer; else divLoading" class="background flex">
-  <div class="flex flex-column md:flex-row mb-6 mt-6 md:justify-content-around">
-    <mat-card class="beer-details p-7 card mt-4 md:mt-8">
+  <div
+    class="flex flex-column md:flex-row mb-6 mt-6 md:justify-content-around"
+    infiniteScroll
+  >
+    <mat-card *ngIf="isMobile" class="beer-details p-5 card mt-4 card2">
       <div class="flex flex-column">
-        <h1>
+        <h1 class="text-center ">
           <strong>{{ beer.name }}</strong>
         </h1>
-        <h4>{{ beer.tagline }}</h4>
+        <h4 class="text-center ">{{ beer.tagline }}</h4>
+      </div>
+      <div [ngSwitch]="activeTab">
+        <div class="flex flex-column justify-content-between">
+          <button (click)="setActiveTab('description')" class="btn2">
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Description</strong>
+          </button>
+          <div *ngSwitchCase="'description'">
+            <p class="mt-4 mb-4 font text-justify">{{ beer.description }}</p>
+          </div>
+
+          <button (click)="setActiveTab('ingredients')" class="btn2">
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Ingredients</strong>
+          </button>
+          <div *ngSwitchCase="'ingredients'">
+            <ul class="mt-4 mb-4 font">
+              <li *ngFor="let malt of beer.ingredients.malt">
+                {{ malt.name }} ({{ malt.amount.value }} {{ malt.amount.unit }})
+              </li>
+              <li *ngFor="let hop of beer.ingredients.hops">
+                {{ hop.name }} ({{ hop.amount.value }} {{ hop.amount.unit }}) -
+                {{ hop.add }} - {{ hop.attribute }}
+              </li>
+              <li>Yeast: {{ beer.ingredients.yeast }}</li>
+            </ul>
+          </div>
+          <button (click)="setActiveTab('method')" class="btn2">
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Method</strong>
+          </button>
+          <div *ngSwitchCase="'method'">
+            <ul class="mt-4 mb-4 font">
+              <li *ngFor="let mash of beer.method.mash_temp">
+                Mash at {{ mash.temp.value }} {{ mash.temp.unit }} for
+                {{ mash.duration }} minutes
+              </li>
+              <li>
+                Fermentation at {{ beer.method.fermentation.temp.value }}
+                {{ beer.method.fermentation.temp.unit }}
+              </li>
+              <li *ngIf="beer.method.twist">Twist: {{ beer.method.twist }}</li>
+            </ul>
+          </div>
+          <button (click)="setActiveTab('details')" class="btn2">
+            <mat-icon class="icon">info</mat-icon>
+            <strong>Details</strong>
+          </button>
+          <div *ngSwitchCase="'details'">
+            <ul class="mt-4 mb-4">
+              <li><strong>ABV:</strong> {{ beer.abv }}</li>
+              <li><strong>IBU:</strong> {{ beer.ibu }}</li>
+              <li><strong>Target FG:</strong> {{ beer.target_fg }}</li>
+              <li><strong>Target OG:</strong> {{ beer.target_og }}</li>
+              <li><strong>EBC:</strong> {{ beer.ebc }}</li>
+              <li><strong>SRM:</strong> {{ beer.srm }}</li>
+              <li><strong>pH:</strong> {{ beer.ph }}</li>
+              <li>
+                <strong>Attenuation Level:</strong> {{ beer.attenuation_level }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="align-self-center md:align-self-end mt-4">
+        <button class="btn" (click)="goBack()">Go back</button>
+      </div>
+    </mat-card>
+    <mat-card *ngIf="!isMobile" class="beer-details p-7 card mt-4 md:mt-8 card">
+      <div class="flex flex-column">
+        <h1 class="text-center md:text-left">
+          <strong>{{ beer.name }}</strong>
+        </h1>
+        <h4 class="text-center md:text-left">{{ beer.tagline }}</h4>
       </div>
 
       <div class="flex flex-column md:flex-row justify-content-between">

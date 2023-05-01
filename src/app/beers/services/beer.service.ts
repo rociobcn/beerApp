@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { environments } from 'src/environments/environtments';
 import { Beer } from '../interfaces/beer.interface';
+import { LiteralPrimitive } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,8 @@ export class BeerService {
 
   constructor(private http: HttpClient) {}
 
-  getBeers(): Observable<Beer[]> {
-    return this.http.get<Beer[]>(this.baseUrl + '/beers');
+  getBeers(startIndex: number, limit: number): Observable<Beer[]> {
+    return this.http.get<Beer[]>(`${ this.baseUrl }/beers?page=${startIndex}&per_page=${limit}`);
   }
 
   getBeerById(id: string): Observable<any> {

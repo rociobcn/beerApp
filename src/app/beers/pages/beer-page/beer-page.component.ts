@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, switchMap } from 'rxjs';
 import { BeerService } from '../../services/beer.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-beer-page',
@@ -10,13 +11,14 @@ import { BeerService } from '../../services/beer.service';
 })
 export class BeerPageComponent {
   public beer?: any;
-  activeTab: string = 'description';
-
+  public activeTab: string = 'description';
+  public isMobile: boolean = false;
 
   constructor(
     private beerService: BeerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,19 @@ export class BeerPageComponent {
         this.beer = beer[0];
         return;
       });
+
+
+    const CUSTOM_BREAKPOINTS = {
+      XS: '(max-width: 768px)',
+    };
+    this.breakpointObserver
+      .observe([CUSTOM_BREAKPOINTS.XS])
+      .subscribe((result) => {
+        this.isMobile = result.matches;
+        if (this.isMobile) this.activeTab = '';
+        else this.activeTab = 'description';
+      });
+    console.log(this.isMobile);
   }
 
   goBack(): void {

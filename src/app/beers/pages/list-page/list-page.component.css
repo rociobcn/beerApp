@@ -3,8 +3,7 @@
   background-image: url("/assets/barley-field-photo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
+  overflow-y: scroll;
 }
 
 .background::before {
@@ -17,17 +16,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.list-container {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  width: 100%;
+.center{
+  place-content: center;
 }
 
-.card-container {
-  flex: 0 0 auto;
-  width: 200px;
-  margin-right: 10px;
-  scroll-snap-align: start;
-}

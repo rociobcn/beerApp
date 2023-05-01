@@ -1,27 +1,24 @@
 <header class="mat-elevation-z2">
-  <div class="header-container">
-    <div class="header-logo">
+  <div
+    class="header-container justify-content-center sm:justify-content-between sm:w-12"
+  >
+    <div class="header-logo hidden sm:block">
       <img
         src="https://pbs.twimg.com/profile_images/1635693656039469066/sbfH1f8g_400x400.jpg"
         alt="Logo"
       />
     </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="home">
+
+    <nav class="flex justify-content-center">
+      <button routerLink="home" class="btn2 mr-2">
         <mat-icon>home</mat-icon>
-        Home
       </button>
-      <button mat-menu-item routerLink="list">
+      <button routerLink="list" class="btn2 mr-2">
         <mat-icon>list</mat-icon>
-        List
       </button>
-      <button mat-menu-item routerLink="search">
+      <button routerLink="search" class="btn2">
         <mat-icon>search</mat-icon>
-        Search
       </button>
-    </mat-menu>
+    </nav>
   </div>
 </header>
